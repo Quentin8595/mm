@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Curling - Fête Forêt</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- PAGE ZERO -->
+<div class="page active" id="page0">
+  <img src="logo_la_fete.png" alt="Logo Fête" id="logoPage0">
+  <div class="photo-gallery">
+    <img src="Photo1.png" alt="Photo1">
+    <img src="Photo2.png" alt="Photo2">
+    <img src="Photo3.png" alt="Photo3">
+  </div>
+  <button class="nextBtn" onclick="goTo('accueil')">Suivant →</button>
+</div>
+
+<!-- ACCUEIL -->
+<div class="page" id="accueil">
+  <div class="logo-zone">
+    <img id="logo" src="logo_la_fete.png" alt="Logo Fête Forêt">
+    <h1 id="titreJeu">Curling</h1>
+    <p class="regle-jeu">Bienvenue dans l'univers de la Fête Forêt</p>
+  </div>
+  <div class="accueil-buttons">
+    <button onclick="goTo('modeJeux')">Mode de jeu +</button>
+    <button onclick="openPDF()">Règles</button>
+    <button onclick="startTournament()">Tournois</button>
+  </div>
+</div>
+
+<!-- MODE DE JEUX -->
+<div class="page" id="modeJeux">
+  <h3>Choisissez un mode</h3>
+  <div class="mode-buttons">
+    <button onclick="goTo('score80')">80 Points</button>
+    <button onclick="startSudden()">Mort subite</button>
+    <button onclick="goTo('funMode')">Curling rigolo</button>
+  </div>
+  <button class="backBtn" onclick="goTo('accueil')">←</button>
+</div>
+
+<!-- 80 POINTS -->
+<div class="page" id="score80">
+  <h1 style="color: var(--main-color);">80 Points</h1>
+  <p>Chaque équipe lance à tour de rôle ses 6 palets. Une fois les 12 palets lancés, utilisez le compteur ci-dessous pour calculer les points de la manche et rejouez. La première équipe atteignant 80 points gagne la partie. <em>Pour plus de détails, consultez les règles.</em></p>
+
+  <div class="teams">
+    <div class="team">
+      <h4>Équipe 1</h4>
+      <div class="score" id="s1">0</div>
+      <div class="score-controls">
+        <button onclick="add(1,1)">+</button>
+        <button onclick="add(1,-1)">-</button>
+      </div>
+      <div class="score-input-btn">
+        <input type="number" id="input1" placeholder="Score">
+        <button onclick="addInput(1)">Valider</button>
+      </div>
+    </div>
+    <div class="team">
+      <h4>Équipe 2</h4>
+      <div class="score" id="s2">0</div>
+      <div class="score-controls">
+        <button onclick="add(2,1)">+</button>
+        <button onclick="add(2,-1)">-</button>
+      </div>
+      <div class="score-input-btn">
+        <input type="number" id="input2" placeholder="Score">
+        <button onclick="addInput(2)">Valider</button>
+      </div>
+    </div>
+  </div>
+
+  <p id="winMsg" style="font-size:24px;"></p>
+  <button class="backBtn" onclick="goTo('modeJeux')">←</button>
+</div>
+
+<!-- MORT SUBITE -->
+<div class="page" id="sudden">
+  <h1 style="color: var(--main-color);">Mort Subite</h1>
+  <p>Chaque participant lance 6 palets, le score d'un participant doit être supérieur ou égal au chiffre indiqué sinon le joueur est éliminé. Une fois que tous les joueurs ont joué, cliquez sur Suivant. Le dernier restant est le gagnant. <em>Pour plus de détails, consultez les règles.</em></p>
+  <span id="target">7</span>
+  <button id="nextSudden" onclick="nextSudden()">Suivant</button>
+  <button class="backBtn" onclick="goTo('modeJeux')">←</button>
+</div>
+
+<!-- CURLING RIGOLO -->
+<div class="page" id="funMode">
+  <h1 style="color: var(--main-color);">Curling Rigolo</h1>
+  <p id="funMsg">
+    Chaque équipe lance à tour de rôle ses 6 palets en effectuant l'action demandée. 
+    À la fin des 12 palets lancés, l'équipe avec le plus de points gagne la manche, 
+    puis on recommence pour la suivante avec une nouvelle action. 
+    <span style="font-style:italic;">Pour plus de détails, consultez les règles.</span>
+  </p>
+  <div class="fun-button">
+    <button onclick="funAction()">Jouer</button>
+  </div>
+  <button class="backBtn" onclick="goTo('modeJeux')">←</button>
+</div>
+
+<!-- TOURNOI -->
+<div class="page" id="tournament">
+  <h3>Tournoi</h3>
+  <div id="tournamentBracket" class="tournament-container"></div>
+  <button class="backBtn" onclick="goTo('accueil')">←</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
